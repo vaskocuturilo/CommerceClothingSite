@@ -6,7 +6,7 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import pages.MainPage;
 
-public class SimpleTest extends BaseClass {
+public class SimpleTitleTest extends BaseClass {
 
     @Description("This is simple automation script.")
     @Feature("Smoke.")
