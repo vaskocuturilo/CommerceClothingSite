@@ -1,4 +1,4 @@
-## http://automationpractice.com
+## This is example work with http://automationpractice.com site. 
 
 ## Requirements:
 - Use any *object-oriented language* .
