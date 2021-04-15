@@ -1,0 +1,115 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.6.0"
+    }
+}
+
+plugins {
+    id 'org.gradle.test-retry' version '1.0.0'
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'io.qameta.allure'
+
+mainClassName = 'qa-tests'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+allure {
+    version = '2.6.0'
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = '2.6.0'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+dependencies {
+    implementation 'junit:junit:4.12'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.3.1'
+    compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
+    compile group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.6.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    compile group: 'org.json', name: 'json', version: '20180130'
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-java-annotations', version: '1.5.4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    testCompile group: 'io.qameta.allure', name: 'allure-junit4', version: '2.6.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java", "src/main/groovy"]
+        }
+    }
+    test {
+        java {
+            srcDirs = ["src/test/java", "src/test/groovy"]
+        }
+    }
+}
+
+test {
+    outputs.upToDateWhen { false }
+    reports {
+        junitXml.enabled = true
+        html.enabled = true
+    }
+}
+
+task sanityTest(type: Test) {
+    outputs.upToDateWhen { false }
+    useJUnit {
+        includeCategories 'pages.SanityTests'
+    }
+}
+
+task smokeTest(type: Test) {
+    outputs.upToDateWhen { false }
+    useJUnit {
+        includeCategories 'pages.SmokeTests'
+    }
+}
+
+test {
+    if (project.hasProperty('maxParallelForks'))
+        maxParallelForks = project.maxParallelForks as int
+    if (project.hasProperty('forkEvery'))
+        forkEvery = project.forkEvery as int
+}
+
+tasks.withType(Test) {
+    systemProperty 'env', System.getProperty('env', 'env')
+}
+
+//noinspection GroovyAssignabilityCheck
+tasks.withType(Test) {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
+
+tasks.withType(Test) {
+    systemProperties["junit.jupiter.execution.parallel.enabled"] = true
+    systemProperties["junit.jupiter.execution.parallel.mode.default"] = "concurrent"
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+}
+
+test {
+    retry {
+        failOnPassedAfterRetry = true
+        maxFailures = 42
+        maxRetries = 1
+    }
+}
