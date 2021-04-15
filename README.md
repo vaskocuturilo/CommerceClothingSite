@@ -25,15 +25,15 @@ You will need the following technologies available to try it out:
 - [x] ability to run tests for different browsers/os by configuring;
 - [x] ability to run tests for different environments(urls) by configuring/by command-line.
 
-```mvn clean test -Denv=prod -Dbrowser=firefox``` 
+```gradle clean test -Denv=prod -Dbrowser=firefox``` 
 
 ### Generate Allure report 
 
-```mvn allure:report```
+```gradle allure:report```
 
 ### Open Allure report in browser
 
-```mvn allure:serve```
+```gradle allure:serve```
 
 
 ![]()
