@@ -1,8 +1,11 @@
 package pages;
 
 import base.DriverHolder;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.WebStorage;
+
+import java.util.Date;
 
 public abstract class AbstractPages {
 
@@ -18,5 +21,19 @@ public abstract class AbstractPages {
     public static void clearLocalStorage() {
         WebStorage webStorage = (WebStorage) DriverHolder.getDriverThread();
         webStorage.getLocalStorage().clear();
+    }
+
+    public AbstractPages scrollDownPage() {
+        final JavascriptExecutor executor = (JavascriptExecutor) DriverHolder.getDriverThread();
+
+        executor.executeScript("window.scrollTo(0,document.body.scrollHeight);");
+
+        return this;
+    }
+
+    public static String createEmailForNewUser() {
+        final String todayData = String.valueOf(new Date().getTime());
+
+        return "newsletter_email_" + todayData + "@qa.team";
     }
 }
