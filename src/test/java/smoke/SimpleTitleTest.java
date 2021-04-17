@@ -15,7 +15,7 @@ public class SimpleTitleTest extends BaseClass {
     @DisplayName("Simple automation script.")
     @Test
     public void testSimple() {
-        MainPage mainPage = new MainPage();
-        mainPage.checkThatMainPageLoad();
+        new MainPage()
+                .checkThatMainPageLoad();
     }
 }
