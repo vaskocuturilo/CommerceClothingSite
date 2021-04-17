@@ -6,7 +6,7 @@ import waiter.WaitCondition;
 
 import static utils.JsonData.getJsonData;
 
-public class AuthorizationPage {
+public class AuthorizationPage extends AbstractPages {
 
     private static final By LOGIN_FORM = By.cssSelector("form[id='login_form']");
 
@@ -16,12 +16,25 @@ public class AuthorizationPage {
 
     private static final By SIGN_IN_BUTTON = By.cssSelector("button[id='SubmitLogin']");
 
+    private static final By INPUT_EMAIL = By.cssSelector("input[id='email_create']");
+
+    private static final By CREATE_ACCOUNT_BUTTON = By.cssSelector("button[id='SubmitCreate']");
+
     public AccountPage enterCredentialUser() {
         checkThatLoginFormAvailable();
         enterUserEmail();
         enterPassword();
         clickSignInButton();
         return new AccountPage();
+    }
+
+    public CreateAccountPage enterEmailForNewUser() {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(INPUT_EMAIL).clear();
+        waitCondition.waitForVisibilityOfElementLocatedBy(INPUT_EMAIL).sendKeys(createEmailForNewUser());
+        waitCondition.waitForVisibilityOfElementLocatedBy(CREATE_ACCOUNT_BUTTON).click();
+
+        return new CreateAccountPage();
     }
 
     private AuthorizationPage checkThatLoginFormAvailable() {
