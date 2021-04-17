@@ -1,10 +1,10 @@
 package model;
 
 public class User {
+
     private String fullName;
     private String email;
     private String password;
-
 
     public String getFullName() {
         return fullName;

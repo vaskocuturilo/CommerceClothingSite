@@ -1,0 +1,10 @@
+{
+  "firstName": "Anton",
+  "lastName": "Smirnov",
+  "password": "qwerty123456",
+  "address": "Test street",
+  "city": "Test city",
+  "zipCode": "00001",
+  "state": "Mississippi",
+  "phone": "5558990"
+}

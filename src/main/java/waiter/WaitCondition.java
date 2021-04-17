@@ -19,4 +19,8 @@ public class WaitCondition {
     public WebElement waitForVisibilityOfElementLocatedBy(final By locator) {
         return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public Boolean waitForInvisibilityOfElementLocated(final By locator) {
+        return webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }
