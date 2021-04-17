@@ -17,8 +17,8 @@ public class SimpleSearchTest extends BaseClass {
     @DisplayName("Simple search automation script.")
     @Test
     public void simpleSearchTest() {
-        MainPage mainPage = new MainPage();
-        mainPage.enterInformationForSearch(SEARCH_TEXT)
+        new MainPage()
+                .enterInformationForSearch(SEARCH_TEXT)
                 .checkSearchResult(SEARCH_TEXT)
                 .checkThatSearchResultNotNull();
     }
