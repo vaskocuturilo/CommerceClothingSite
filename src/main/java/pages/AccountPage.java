@@ -7,13 +7,14 @@ import waiter.WaitCondition;
 
 import static utils.JsonData.getJsonData;
 
-public class AccountPage {
+public class AccountPage extends AbstractPages {
 
     private static final By ACCOUNT = By.cssSelector("a[class='account']");
 
     private static final By SIGN_OUT_BUTTON = By.cssSelector("a[class='logout']");
 
     private static final By CONTACT_US_LINK = By.cssSelector("div[id='contact-link']");
+
 
     public AccountPage checkFullNameUser() {
         WaitCondition waitCondition = new WaitCondition();
@@ -37,6 +38,14 @@ public class AccountPage {
         waitCondition.waitForVisibilityOfElementLocatedBy(CONTACT_US_LINK).click();
 
         return new ContactUsPage();
+    }
+
+    public StorePage selectLinkFromFooter(final String nameLink) {
+        WaitCondition waitCondition = new WaitCondition();
+        scrollDownPage();
+        waitCondition.waitForVisibilityOfElementLocatedBy(By.cssSelector("a[title='" + nameLink + "']")).click();
+
+        return new StorePage();
     }
 
 
