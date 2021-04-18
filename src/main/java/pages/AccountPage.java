@@ -13,6 +13,8 @@ public class AccountPage {
 
     private static final By SIGN_OUT_BUTTON = By.cssSelector("a[class='logout']");
 
+    private static final By CONTACT_US_LINK = By.cssSelector("div[id='contact-link']");
+
     public AccountPage checkFullNameUser() {
         WaitCondition waitCondition = new WaitCondition();
 
@@ -29,4 +31,13 @@ public class AccountPage {
 
         return this;
     }
+
+    public ContactUsPage openContactUsForm() {
+        WaitCondition waitCondition = new WaitCondition();
+        waitCondition.waitForVisibilityOfElementLocatedBy(CONTACT_US_LINK).click();
+
+        return new ContactUsPage();
+    }
+
+
 }
