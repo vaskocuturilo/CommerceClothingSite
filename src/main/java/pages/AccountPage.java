@@ -17,16 +17,16 @@ public class AccountPage extends AbstractPages {
 
 
     public AccountPage checkFullNameUser() {
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
 
-        User user = getJsonData("account", User.class, "account");
+        final User user = getJsonData("account", User.class, "account");
         Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(ACCOUNT).getText(), user.getFullName());
 
         return this;
     }
 
     public AccountPage clickSignOutButton() {
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SIGN_OUT_BUTTON).isDisplayed();
         waitCondition.waitForVisibilityOfElementLocatedBy(SIGN_OUT_BUTTON).click();
 
@@ -34,15 +34,14 @@ public class AccountPage extends AbstractPages {
     }
 
     public ContactUsPage openContactUsForm() {
-        WaitCondition waitCondition = new WaitCondition();
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(CONTACT_US_LINK).click();
 
         return new ContactUsPage();
     }
 
-    public StorePage selectLinkFromFooter(final String nameLink) {
-        WaitCondition waitCondition = new WaitCondition();
-        scrollDownPage();
+    public StorePage selectCategory(final String nameLink) {
+        final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(By.cssSelector("a[title='" + nameLink + "']")).click();
 
         return new StorePage();
