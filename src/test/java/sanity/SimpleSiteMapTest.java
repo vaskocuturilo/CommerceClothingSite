@@ -18,7 +18,7 @@ public class SimpleSiteMapTest extends BaseClass {
         new LandingPage()
                 .openAuthenticationPage()
                 .enterCredentialUser()
-                .selectLinkFromFooter("Sitemap")
+                .selectCategory("Sitemap")
                 .checkThatSiteMapFunctionalWorkDone()
                 .clickSignOutButton();
     }
