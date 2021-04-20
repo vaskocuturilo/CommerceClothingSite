@@ -1,6 +1,7 @@
 package pages;
 
 import base.DriverHolder;
+import io.qameta.allure.Step;
 import model.Register;
 import model.User;
 import org.junit.Assert;
@@ -30,6 +31,7 @@ public class CreateAccountPage {
 
     private static final By DISABLED_BUTTON = By.cssSelector("div[class='btn--order-submit.disabled']");
 
+    @Step
     public CreateAccountPage fillingDataNewUser() {
         selectGenderType(Gender.MR);
         enterCredentialNewUser();
@@ -39,6 +41,7 @@ public class CreateAccountPage {
         return this;
     }
 
+    @Step
     public AccountPage checkThatCreateNewUserSuccess() {
         WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForInvisibilityOfElementLocated(DISABLED_BUTTON);
@@ -96,6 +99,4 @@ public class CreateAccountPage {
         waitCondition.waitForVisibilityOfElementLocatedBy(REGISTER_BUTTON).click();
         return this;
     }
-
-
 }

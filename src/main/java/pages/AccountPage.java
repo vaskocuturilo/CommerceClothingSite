@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import model.User;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -15,7 +16,7 @@ public class AccountPage extends AbstractPages {
 
     private static final By CONTACT_US_LINK = By.cssSelector("div[id='contact-link']");
 
-
+    @Step
     public AccountPage checkFullNameUser() {
         final WaitCondition waitCondition = new WaitCondition();
 
@@ -25,6 +26,7 @@ public class AccountPage extends AbstractPages {
         return this;
     }
 
+    @Step
     public AccountPage clickSignOutButton() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SIGN_OUT_BUTTON).isDisplayed();
@@ -33,6 +35,7 @@ public class AccountPage extends AbstractPages {
         return this;
     }
 
+    @Step
     public ContactUsPage openContactUsForm() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(CONTACT_US_LINK).click();
@@ -40,12 +43,11 @@ public class AccountPage extends AbstractPages {
         return new ContactUsPage();
     }
 
+    @Step
     public StorePage selectCategory(final String nameLink) {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(By.cssSelector("a[title='" + nameLink + "']")).click();
 
         return new StorePage();
     }
-
-
 }
