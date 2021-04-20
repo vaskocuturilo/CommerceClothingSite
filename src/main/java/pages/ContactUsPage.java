@@ -1,6 +1,7 @@
 package pages;
 
 import base.DriverHolder;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,7 @@ public class ContactUsPage {
 
     private static final File UPLOAD_FILE = new File("src/main/resources/arrow.png");
 
+    @Step
     public ContactUsPage fillingContactUsData() {
         selectSubjectHeading(SubjectHeading.CUSTOMER_SERVICE);
         attachFile();
@@ -56,12 +58,14 @@ public class ContactUsPage {
         return this;
     }
 
+    @Step
     public ContactUsPage clickSendButton() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(SEND_BUTTON).click();
         return this;
     }
 
+    @Step
     public ContactUsPage checkThatSendMessageIsSuccess() {
         final WaitCondition waitCondition = new WaitCondition();
         Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(ALERT_MESSAGE).getText(), CHECK_MESSAGE);

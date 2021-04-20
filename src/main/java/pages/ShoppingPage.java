@@ -1,6 +1,7 @@
 package pages;
 
 import base.DriverHolder;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import waiter.WaitCondition;
@@ -17,6 +18,7 @@ public class ShoppingPage {
 
     private static final By CONFIRM_BUTTON = By.cssSelector("p[id='cart_navigation'] button[type='submit']");
 
+    @Step
     public ShoppingPage completeOrder() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(PROCEED_CHECKOUT).isDisplayed();
@@ -40,6 +42,7 @@ public class ShoppingPage {
         return this;
     }
 
+    @Step
     public ShoppingPage paymentPurchases(final PayMethod payMethod) {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(By.cssSelector(payMethod.getPayMethod())).click();
@@ -47,6 +50,7 @@ public class ShoppingPage {
         return this;
     }
 
+    @Step
     public ShoppingPage confirmOrder() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(CONFIRM_BUTTON).click();
@@ -54,6 +58,7 @@ public class ShoppingPage {
         return this;
     }
 
+    @Step
     public AccountPage checkThatOrderSuccess() {
         Assert.assertTrue(DriverHolder.getDriverThread().getCurrentUrl().contains("controller=order-confirmation"));
 

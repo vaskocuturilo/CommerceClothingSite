@@ -1,9 +1,11 @@
 package pages;
 
 import base.DriverHolder;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import waiter.WaitCondition;
 
 import java.util.Arrays;
@@ -21,6 +23,7 @@ public class StorePage {
 
     private static final By TABLE_ORDERS = By.cssSelector("table[id='order-list'] tbody tr");
 
+    @Step
     public AccountPage checkThatSiteMapFunctionalWorkDone() {
         final List<String> notAllEqualList = Arrays.asList("Our offers", "Your Account", "Categories", "Pages");
         final List<WebElement> elementList = DriverHolder.getDriverThread().findElements(CATEGORY_LIST);
@@ -36,6 +39,7 @@ public class StorePage {
         return new AccountPage();
     }
 
+    @Step
     public StorePage selectFirstProductFromList() {
         final WaitCondition waitCondition = new WaitCondition();
         final List<WebElement> elementList = DriverHolder.getDriverThread().findElements(PRODUCT_LIST);
@@ -47,6 +51,7 @@ public class StorePage {
         return this;
     }
 
+    @Step
     public ShoppingPage proceedToCheckoutStage() {
         final WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(PROCEED_BUTTON).isDisplayed();
@@ -55,10 +60,26 @@ public class StorePage {
         return new ShoppingPage();
     }
 
+    @Step
     public AccountPage checkThatOrdersHistoryNotEmpty() {
         final List<WebElement> webElementList = DriverHolder.getDriverThread().findElements(TABLE_ORDERS);
 
         Assert.assertTrue(!webElementList.isEmpty());
+
+        return new AccountPage();
+    }
+
+    @Step
+    public StorePage selectSortBy(final SortBy sortBy) {
+        final Select select = new Select(DriverHolder.getDriverThread().findElement(By.cssSelector("select[id='selectProductSort']")));
+        select.selectByValue(sortBy.getValue());
+
+        return new StorePage();
+    }
+
+    @Step
+    public AccountPage checkThatSelectLowerPriceSeller(final OrderWay orderWay) {
+        Assert.assertTrue(DriverHolder.getDriverThread().getCurrentUrl().contains(orderWay.getValue()));
 
         return new AccountPage();
     }

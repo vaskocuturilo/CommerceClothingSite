@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import model.User;
 import org.openqa.selenium.By;
 import waiter.WaitCondition;
@@ -20,6 +21,7 @@ public class AuthorizationPage extends AbstractPages {
 
     private static final By CREATE_ACCOUNT_BUTTON = By.cssSelector("button[id='SubmitCreate']");
 
+    @Step
     public AccountPage enterCredentialUser() {
         checkThatLoginFormAvailable();
         enterUserEmail();
@@ -28,6 +30,7 @@ public class AuthorizationPage extends AbstractPages {
         return new AccountPage();
     }
 
+    @Step
     public CreateAccountPage enterEmailForNewUser() {
         WaitCondition waitCondition = new WaitCondition();
         waitCondition.waitForVisibilityOfElementLocatedBy(INPUT_EMAIL).clear();
