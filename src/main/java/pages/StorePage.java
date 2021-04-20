@@ -19,6 +19,8 @@ public class StorePage {
 
     private static final By PROCEED_BUTTON = By.cssSelector("div[class='button-container'] a");
 
+    private static final By TABLE_ORDERS = By.cssSelector("table[id='order-list'] tbody tr");
+
     public AccountPage checkThatSiteMapFunctionalWorkDone() {
         final List<String> notAllEqualList = Arrays.asList("Our offers", "Your Account", "Categories", "Pages");
         final List<WebElement> elementList = DriverHolder.getDriverThread().findElements(CATEGORY_LIST);
@@ -51,5 +53,13 @@ public class StorePage {
         waitCondition.waitForVisibilityOfElementLocatedBy(PROCEED_BUTTON).click();
 
         return new ShoppingPage();
+    }
+
+    public AccountPage checkThatOrdersHistoryNotEmpty() {
+        final List<WebElement> webElementList = DriverHolder.getDriverThread().findElements(TABLE_ORDERS);
+
+        Assert.assertTrue(!webElementList.isEmpty());
+
+        return new AccountPage();
     }
 }
