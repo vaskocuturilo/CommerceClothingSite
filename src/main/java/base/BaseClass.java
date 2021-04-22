@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.concurrent.TimeUnit;
 
 import static pages.AbstractPages.*;
+import static webconfig.WebConfig.BASE_CONFIG;
 
 public class BaseClass {
 
@@ -21,7 +22,7 @@ public class BaseClass {
         DriverHolder.getDriverThread().manage().timeouts().implicitlyWait(DELAY, TimeUnit.SECONDS);
         DriverHolder.getDriverThread().manage().timeouts().pageLoadTimeout(DELAY, TimeUnit.SECONDS);
         DriverHolder.getDriverThread().manage().timeouts().setScriptTimeout(DELAY, TimeUnit.SECONDS);
-        navigateWebBrowser().to("http://automationpractice.com/index.php");
+        navigateWebBrowser().to(BASE_CONFIG.getWebUrl());
     }
 
     @AfterClass
