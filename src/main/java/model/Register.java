@@ -11,6 +11,17 @@ public class Register {
     private String state;
     private String phone;
 
+    public Register(String firstName, String lastName, String password, String address, String city, String zipCode, String state, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.phone = phone;
+    }
+
     public String getFirstName() {
         return firstName;
     }

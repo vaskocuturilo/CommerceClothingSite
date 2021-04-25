@@ -20,7 +20,7 @@ public class SimpleCreateAccountTest extends BaseClass {
                 .enterEmailForNewUser()
                 .fillingDataNewUser()
                 .checkThatCreateNewUserSuccess()
-                .checkFullNameUser()
+                .checkFullNameForNewUser()
                 .clickSignOutButton();
     }
 }

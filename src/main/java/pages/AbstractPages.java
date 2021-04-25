@@ -30,10 +30,4 @@ public abstract class AbstractPages {
 
         return this;
     }
-
-    public static String createEmailForNewUser() {
-        final String todayData = String.valueOf(new Date().getTime());
-
-        return "newsletter_email_" + todayData + "@qa.team";
-    }
 }

@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import waiter.WaitCondition;
 
+import static utils.EmailUtil.createEmailForNewUser;
+
 public class MainPage extends AbstractPages {
 
     private static final String TITLE = "My Store";
