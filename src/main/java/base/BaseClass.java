@@ -1,7 +1,9 @@
 package base;
 
 import browsers.Chrome;
+import data.UserInformation;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -13,6 +15,12 @@ import static webconfig.WebConfig.BASE_CONFIG;
 public class BaseClass {
 
     private static final int DELAY = 10;
+
+    @Before
+    public void createData() {
+        UserInformation userInformation = new UserInformation();
+        userInformation.createJsonFileWithUserInformation();
+    }
 
     @BeforeClass
     public static void start() {

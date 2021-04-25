@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import model.Register;
 import model.User;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,7 +22,17 @@ public class AccountPage extends AbstractPages {
         final WaitCondition waitCondition = new WaitCondition();
 
         final User user = getJsonData("account", User.class, "account");
-        Assert.assertEquals(waitCondition.waitForVisibilityOfElementLocatedBy(ACCOUNT).getText(), user.getFullName());
+        Assert.assertTrue(waitCondition.waitForVisibilityOfElementLocatedBy(ACCOUNT).getText().contains(user.getFullName()));
+
+        return this;
+    }
+
+    @Step
+    public AccountPage checkFullNameForNewUser() {
+        final WaitCondition waitCondition = new WaitCondition();
+
+        final Register register = getJsonData("register", Register.class, "register");
+        Assert.assertTrue(waitCondition.waitForVisibilityOfElementLocatedBy(ACCOUNT).getText().contains(register.getLastName()));
 
         return this;
     }

@@ -5,6 +5,7 @@ import model.User;
 import org.openqa.selenium.By;
 import waiter.WaitCondition;
 
+import static utils.EmailUtil.createEmailForNewUser;
 import static utils.JsonData.getJsonData;
 
 public class AuthorizationPage extends AbstractPages {
