@@ -36,7 +36,7 @@ You will need the following technologies available to try it out:
 ```gradle allure:serve```
 
 
-![]()
+![](https://a.radikal.ru/a16/2105/f5/707a00f06e51.png)
 
 ![]()
 
