@@ -31,23 +31,33 @@ allure {
     allureJavaVersion = '2.6.0'
 }
 
+ext {
+    junitVeriosn = '4.13.2'
+    javafaker = '1.0.2'
+    webdrivermanager = '4.4.0'
+    ownerBits = '1.0.12'
+    jacksonCore = '2.12.3'
+    allure = '2.13.9'
+    selenium = '3.141.59'
+    json = '20180130'
+    allureAnnotations = '1.5.4'
+    allureJunit4 = '2.13.9'
+}
+
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 dependencies {
-    implementation 'junit:junit:4.12'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
-    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.0'
-    implementation group: 'org.aeonbits.owner', name: 'owner', version: '1.0.12'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.3'
-    implementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.13.9'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-    implementation group: 'org.json', name: 'json', version: '20180130'
-    implementation group: 'ru.yandex.qatools.allure', name: 'allure-java-annotations', version: '1.5.4'
-    testImplementation group: 'io.qameta.allure', name: 'allure-junit4', version: '2.13.9'
-    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
-
-
+    compile("junit:junit:${junitVeriosn}",
+            "com.github.javafaker:javafaker:${javafaker}",
+            "com.github.javafaker:javafaker:${webdrivermanager}",
+            "org.aeonbits.owner:owner:${ownerBits}",
+            "com.fasterxml.jackson.core:jackson-core:${jacksonCore}",
+            "io.qameta.allure:allure-java-commons:${allure}",
+            "org.seleniumhq.selenium:selenium-java:${selenium}",
+            "org.json:json:${json}",
+            "ru.yandex.qatools.allure:allure-java-annotations:${allureAnnotations}",
+            "io.qameta.allure:allure-junit4:${allureJunit4}")
 }
 
 test {
