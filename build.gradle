@@ -34,7 +34,7 @@ allure {
 ext {
     junitVeriosn = '4.13.2'
     javafaker = '1.0.2'
-    webdrivermanager = '4.4.0'
+    webdrivermanager = '4.4.3'
     ownerBits = '1.0.12'
     jacksonCore = '2.12.3'
     allure = '2.13.9'
@@ -48,9 +48,9 @@ compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 dependencies {
-    compile("junit:junit:${junitVeriosn}",
+    implementation("junit:junit:${junitVeriosn}",
             "com.github.javafaker:javafaker:${javafaker}",
-            "com.github.javafaker:javafaker:${webdrivermanager}",
+            "io.github.bonigarcia:webdrivermanager:${webdrivermanager}",
             "org.aeonbits.owner:owner:${ownerBits}",
             "com.fasterxml.jackson.core:jackson-core:${jacksonCore}",
             "io.qameta.allure:allure-java-commons:${allure}",

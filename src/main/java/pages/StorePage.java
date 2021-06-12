@@ -72,7 +72,7 @@ public class StorePage {
     @Step
     public StorePage selectSortBy(final SortBy sortBy) {
         final Select select = new Select(DriverHolder.getDriverThread().findElement(By.cssSelector("select[id='selectProductSort']")));
-        select.selectByValue(sortBy.getValue());
+        select.selectByVisibleText(sortBy.getValue());
 
         return new StorePage();
     }
