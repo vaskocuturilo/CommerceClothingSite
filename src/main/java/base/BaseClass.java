@@ -5,7 +5,9 @@ import data.UserInformation;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.ScreenShotOnFailure;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +17,9 @@ import static webconfig.WebConfig.BASE_CONFIG;
 public class BaseClass {
 
     private static final int DELAY = 10;
+
+    @Rule
+    public ScreenShotOnFailure onFailure = new ScreenShotOnFailure();
 
     @Before
     public void createData() {
