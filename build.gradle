@@ -40,7 +40,7 @@ ext {
     ownerBits = '1.0.12'
     jacksonCore = '2.13.1'
     allure = '2.14.0'
-    selenium = '3.141.59'
+    selenium = '4.1.1'
     json = '20211205'
     allureAnnotations = '1.5.4'
     allureJunit4 = '2.14.0'
